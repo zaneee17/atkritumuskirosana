@@ -1,0 +1,42 @@
+class AtrikumuAplikacija:
+    def __init__(self):
+        self.atkritumu_saraksts = {}
+
+    def pievienot_atkritumus(self, lietotajvards, daudzums):
+        if lietotajvards in self.atkritumu_saraksts:
+            self.atkritumu_saraksts[lietotajvards].append(daudzums)
+        else:
+            self.atkritumu_saraksts[lietotajvards] = [daudzums]
+
+    def iegut_atkritumu_videtaju(self, lietotajvards):
+        if lietotajvards in self.atkritumu_saraksts:
+            atkritumu_skaits = sum(self.atkritumu_saraksts[lietotajvards])
+            return atkritumu_skaits
+        else:
+            return 0
+
+    def sniegt_padomus(self, lietotajvards):
+        atkritumu_skaits = self.iegut_atkritumu_videtaju(lietotajvards)
+        if atkritumu_skaits > 10:
+            return "Jūs esat pārsnieguši atkritumu daudzuma limitu. Izmantojiet vairāk pārstrādājamo materiālu un mazāk plastmasas."
+        elif atkritumu_skaits > 5:
+            return "Jūsu atkritumu daudzums ir vidējs. Mēģiniet izmantot vairāk pārstrādājamo materiālu un mazāk vienreizējo lietošanas produktu."
+        else:
+            return "Jūsu atkritumu daudzums ir zems. Turpiniet izmantot pārstrādājamus materiālus un maziniet atkritumu daudzumu."
+
+# Izveidojam aplikācijas instanci
+aplikacija = AtrikumuAplikacija()
+
+# Pievienojam atkritumus lietotājiem
+aplikacija.pievienot_atkritumus("lietotajs1", 8)
+aplikacija.pievienot_atkritumus("lietotajs2", 12)
+aplikacija.pievienot_atkritumus("lietotajs3", 5)
+
+# Iegūstam atkritumu vidējo daudzumu un sniedzam padomus
+lietotajvards = "lietotajs2"
+atkritumu_videtajs = aplikacija.iegut_atkritumu_videtaju(lietotajvards)
+padomi = aplikacija.sniegt_padomus(lietotajvards)
+
+print(f"{lietotajvards} atkritumu vidējais daudzums: {atkritumu_videtajs} litri")
+print("Padomi:")
+print(padomi)
