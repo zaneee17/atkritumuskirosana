@@ -1,0 +1,31 @@
+import matplotlib.pyplot as plt
+
+class AtrikumuAplikacija:
+    def __init__(self):
+        self.atkritumu_dati = {}
+
+    def pievienot_atkritumus(self, lietotajvards, atkritumu_litri):
+        if lietotajvards in self.atkritumu_dati:
+            self.atkritumu_dati[lietotajvards].append(atkritumu_litri)
+        else:
+            self.atkritumu_dati[lietotajvards] = [atkritumu_litri]
+
+    def izveidot_diagrammu(self):
+        fig, ax = plt.subplots()
+        for lietotajvards, dati in self.atkritumu_dati.items():
+            ax.plot(range(1, len(dati) + 1), dati, marker='o', label=lietotajvards)
+        ax.set(xlabel='Nedēļa', ylabel='Iztērētie atkritumu litri',
+               title='Iztērēto atkritumu litru dinamika pēc nedēļām')
+        ax.grid()
+        ax.legend()
+        plt.show()
+
+# Izveidojam aplikācijas instanci
+aplikacija = AtrikumuAplikacija()
+
+# Pievienojam atkritumu datus
+aplikacija.pievienot_atkritumus("lietotajs1", [5, 8, 6, 10, 7])
+aplikacija.pievienot_atkritumus("lietotajs2", [7, 6, 5, 4, 3])
+
+# Izveidojam diagrammu
+aplikacija.izveidot_diagrammu()
