@@ -1,0 +1,22 @@
+class Lietotajs:
+    def __init__(self, lietotajvards, parole):
+        self.lietotajvards = lietotajvards
+        self.parole = parole
+
+class AtrikumuAplikacija:
+    def __init__(self):
+        self.lietotaji = []
+
+    def registret_lietotaju(self, lietotajvards, parole):
+        jauns_lietotajs = Lietotajs(lietotajvards, parole)
+        self.lietotaji.append(jauns_lietotajs)
+        print("Lietotājs veiksmīgi reģistrēts!")
+
+# Izveidojam aplikācijas instanci
+aplikacija = AtrikumuAplikacija()
+
+# Reģistrējam jaunu lietotāju
+lietotajvards = input("Ievadiet lietotājvārdu: ")
+parole = input("Ievadiet paroli: ")
+
+aplikacija.registret_lietotaju(lietotajvards, parole)
